@@ -1,0 +1,128 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+
+}
+
+body{
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100vh;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 500vw;
+  height: 100vh;
+
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  max-width: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
+.content{
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+}
+
+.content h1{
+  font-size: 150px;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+.content a{
+  font-size: 23px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fff;
+  padding: 15px 25px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.content a:hover{
+  background-color: #fff;
+  color: #000;
+} 
+
+.title{
+position: absolute;
+top: 50px;
+left: 35px;
+z-index: 10;
+}
+
+.title h1 {
+  font-size: 110px;
+  color: #fff;
+  line-height: 0.9;
+  font-weight: 700;
+  margin: 0;
+  text-transform: lowercase;
+
+  -webkit-text-stroke: 2px black;  /* Width and color */
+  text-stroke: 5px black;     
+}
+
+
+
+.background-clip{
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: calc(100% + 20px);
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  z-index: -1;
+}
+/* Mask the overlapping edges */
+.section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to left, transparent, rgba(0,0,0,0.1));
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (min-aspect-ratio:16/9){
+  .background-clip{
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio:16/9){
+  .background-clip{
+    width: auto;
+    height: 100%;
+  }
+}
+
+::-webkit-scrollbar {
+  display:none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+

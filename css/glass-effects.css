@@ -1,0 +1,106 @@
+.glass-container{
+  height: 520px;
+  width: 350px;
+  padding: 30px 50px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.042);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.4);
+  border-left: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.089);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  text-align: justify;
+  line-height: 185%;
+}
+
+
+
+.glass-container h1{
+  margin: 30px;
+  color: white;
+}
+
+.glass-bubble {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%; /* Makes it circular instead of rectangular */
+  background-color: rgba(255, 255, 255, 0.121);
+  backdrop-filter: blur(3px);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.089);
+  
+  display: flex;
+  justify-content: center; /* Centers arrow horizontally */
+  align-items: center; /* Centers arrow vertically */
+  
+  position: absolute; /* Changed from fixed - now positions relative to parent section */
+  top: 50%; /* Positions at vertical center of section */
+  transform: translateY(-50%); /* Adjusts for perfect vertical centering */
+  z-index: 100;
+
+  transition: opacity 0.5s ease-in-out; /* smooth fade */
+  opacity: 1; /* visible by default */
+  
+  cursor: pointer; /* Shows hand cursor on hover to indicate clickability */
+  transition: all 0.3s ease; /* Smoothly animates all property changes over 0.3 seconds */
+}
+
+.glass-bubble:hover {
+  background-color: rgba(255, 255, 255, 0.08); /* Slightly brighter on hover */
+  transform: translateY(-50%) scale(1.1); /* Keeps vertical centering while growing 10% larger */
+}
+
+/* CLICK EFFECT - Add this for visual feedback when clicked */
+.glass-bubble:active {
+  transform: translateY(-50%) scale(0.95); /* Shrinks to 95% when clicked - creates "press down" effect */
+  background-color: rgba(255, 255, 255, 0.12); /* Brightens more on click */
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.089); /* Reduces shadow to enhance "pressed" feeling */
+}
+
+.glass-bubble-left {
+  left: 40px; /* Positions 40px from left edge of section */
+}
+
+.glass-bubble-right {
+  right: 40px; /* Positions 40px from right edge of section */
+}
+
+.glass-bubble::before {
+  content: ''; /* Creates pseudo-element for arrow shape */
+  width: 0;
+  height: 0;
+  border-style: solid; /* Uses CSS border trick to create triangle */
+}
+
+.glass-bubble-left::before {
+  border-width: 12px 18px 12px 0; /* Top Right Bottom Left - creates left-pointing triangle */
+  border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent; /* Only right border visible */
+  margin-right: 3px; /* Slight adjustment for visual centering */
+}
+
+.glass-bubble-right::before {
+  border-width: 12px 0 12px 18px; /* Creates right-pointing triangle */
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.8); /* Only left border visible */
+  margin-left: 3px; /* Slight adjustment for visual centering */
+}
+
+
+.glass-bubble.hidden {
+  opacity: 0;
+  pointer-events: none; /* optional: makes them unclickable when hidden */
+}
+.arrow {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  pointer-events: none; /* so clicks still hit the bubble */
+}

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/glass-effects.css">
 </head>
 <body>
   
@@ -17,26 +18,46 @@
     </div>
 
 
-    <div class="section" style="background-color: #2a2a2a;">
+    <div class="section">
+      <video autoplay loop muted playsinline class ="background-clip">
+        <source src="images/left long.mp4">
+      </video>
       <div class="content">
         <h1>design1</h1>
       </div>
     </div>
 
-
+    <!-- my home page.       -->
     <div class="section">
 
       <video autoplay loop muted playsinline class ="background-clip">
         <source src="images/Comp 1.mp4">
       </video>
-        <div class="content">
+     
+      <div class="glass-bubble glass-bubble-left" id="arrow-left"></div>
+      <div class="glass-bubble glass-bubble-right" id="arrow-right"></div>
+
+        <!-- <div class="glass-container">
         <h1>Gokul Nambiar</h1>
         <a href="#">Start Learning</a>
+        </div> -->
+
+        <div class="title">
+          <h1>Gokul<br>Nambiar</h1>
+          <h2> </h2>
         </div>
+
+        <div class="glass-nav">
+
+        </div>
+        
     </div>
 
 
-    <div class="section" style="background-color: #2a2a2a;">
+    <div class="section">
+      <video autoplay loop muted playsinline class ="background-clip">
+        <source src="images/right long.mp4">
+      </video>
       <div class="content">
         <h1>dev1</h1>
       </div>
@@ -56,11 +77,49 @@
   <script>
     //starts at center 
     window.addEventListener('load', () => {
-      window.scrollTo({
-        left: window.innerWidth * 2,
-        behavior: 'instant'
-      });
+      setTimeout(() => {  // Small delay ensures layout is complete
+        window.scrollTo({
+          left: window.innerWidth * 2,
+          behavior: 'instant'
+        });
+      }, 100);  // 100ms delay
     });
+
+    const leftArrow = document.querySelector(".glass-bubble-left");
+    const rightArrow = document.querySelector(".glass-bubble-right");
+
+   
+    // which section is "main"?
+    const mainSectionIndex = 2; // since your homepage is the 3rd .section
+
+    window.addEventListener("scroll", () => {
+      const sectionWidth = window.innerWidth;
+      const currentSection = Math.round(window.scrollX / sectionWidth);
+
+      if (currentSection === mainSectionIndex) {
+        leftArrow.classList.remove("hidden");
+        rightArrow.classList.remove("hidden");
+      } else {
+        leftArrow.classList.add("hidden");
+        rightArrow.classList.add("hidden");
+      }
+    });
+
+
+  const wrapper = document.querySelector('.wrapper');
+  const sectionWidth = window.innerWidth; // each section is full screen width
+  const leftArrow = document.getElementById('arrow-left');
+  const rightArrow = document.getElementById('arrow-right');
+
+  rightArrow.addEventListener('click', () => {
+    window.scrollBy({ left: sectionWidth, behavior: 'smooth' });
+  });
+
+  leftArrow.addEventListener('click', () => {
+    window.scrollBy({ left: -sectionWidth, behavior: 'smooth' });
+  });
+
+
   </script>
 
 </body>
