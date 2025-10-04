@@ -6,10 +6,13 @@
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/glass-effects.css">
+  <link rel="stylesheet" href="css/cards.css">
 </head>
 <body>
   
   <div class="wrapper">
+
+    <!-- design 2 -->
   
     <div class="section" style="background-color: #1a1a1a;">
       <div class="content">
@@ -18,51 +21,118 @@
     </div>
 
 
+    <!-- design 1 -->
+
+
     <div class="section">
       <video autoplay loop muted playsinline class ="background-clip">
-        <source src="images/left long.mp4">
+        <source src="images/bg/left long.mp4">
       </video>
-      <div class="content">
-        <h1>design1</h1>
+
+      <div class="background-text2">DESIGN</div>
+
+      <div class="card_wrapper">
+    <div class="container">
+      <div class="card" style="background-image: url('/images/workup.png')">
+        <div class="row">
+          <div class="icon">1</div>
+          <div class="description">
+            <h4>WorkUp</h4>
+            <p> User surveys, user interviews, and lo/mid/hi-fis for a startup sponsered by Microsoft & Google</p>
+          </div>
+        </div>
       </div>
+      
+      <div class="card" style="background-image: url('/images/figbuild.png')">
+        <div class="row">
+          <div class="icon">2</div>
+          <div class="description">
+            <h4>FigBuild</h4>
+            <p>Competed within Figma's first ever Designathon</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" style="background-image: url('images/req.png')">
+        <div class="row">
+          <div class="icon">3</div>
+          <div class="description">
+            <h4>Design Requests</h4>
+            <p>Completed design requests and asset production within ACM UCLA and Foundations Choreography</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      
+     
     </div>
 
     <!-- my home page.       -->
     <div class="section">
 
       <video autoplay loop muted playsinline class ="background-clip">
-        <source src="images/Comp 1.mp4">
+        <source src="images/bg/Comp 1.mp4">
       </video>
      
-      <div class="glass-bubble glass-bubble-left" id="arrow-left"></div>
-      <div class="glass-bubble glass-bubble-right" id="arrow-right"></div>
-
-        <!-- <div class="glass-container">
-        <h1>Gokul Nambiar</h1>
-        <a href="#">Start Learning</a>
-        </div> -->
+      <div class="glass-bubble glass-bubble-left" ></div>
+      <div class="glass-bubble glass-bubble-right"></div>
 
         <div class="title">
           <h1>Gokul<br>Nambiar</h1>
-          <h2> </h2>
+        </div>
+        <div class="title-right">
+          <h2>design<br>oriented<br>solutions</h2>
         </div>
 
-        <div class="glass-nav">
-
-        </div>
-        
+      
     </div>
-
+     <!-- dev 1-->
 
     <div class="section">
-      <video autoplay loop muted playsinline class ="background-clip">
-        <source src="images/right long.mp4">
-      </video>
-      <div class="content">
-        <h1>dev1</h1>
+  <video autoplay loop muted playsinline class="background-clip">
+    <source src="images/bg/right long.mp4">
+  </video>
+
+  <div class="background-text">DEVELOPMENT</div>
+
+  <div class="card_wrapper">
+    <div class="container">
+      <div class="card" style="background-image: url('/images/cc1.png')">
+        <div class="row">
+          <div class="icon">1</div>
+          <div class="description">
+            <h4>Offline Crop Disease Detection</h4>
+            <p>Developed an offline, accessible mobile app to mitigate agricultural loss and support farmers in low-connectivity regions</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" style="background-image: url('/images/bastion.png')">
+        <div class="row">
+          <div class="icon">2</div>
+          <div class="description">
+            <h4>Bastion.ai (in development)</h4>
+            <p>Culturaly aware NLP Chat Moderation - building safer online spaces for younger audiences</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" style="background-image: url('images/dev\ ws.png')">
+        <div class="row">
+          <div class="icon">3</div>
+          <div class="description">
+            <h4>Dev Workshops</h4>
+            <p>Designed and led beginner friendly HTML/CSS and JavaScript workshops as an ACM Design Dev Director</p>
+          </div>
+        </div>
       </div>
     </div>
-
+  </div>
+</div>
+    
+    <!-- dev 2 -->
 
     <div class="section" style="background-color: #0a0a0a;">
       <div class="content">
@@ -74,51 +144,137 @@
   </div>
 
 
-  <script>
-    //starts at center 
+
+
+
+
+
+
+
+<!-- Scripts!!!! -->
+<script>
+
+  
+
     window.addEventListener('load', () => {
-      setTimeout(() => {  // Small delay ensures layout is complete
+      setTimeout(() => {  // small delay ensures layout is complete
         window.scrollTo({
           left: window.innerWidth * 2,
           behavior: 'instant'
         });
-      }, 100);  // 100ms delay
+      }, 100);  
     });
 
-    const leftArrow = document.querySelector(".glass-bubble-left");
-    const rightArrow = document.querySelector(".glass-bubble-right");
-
-   
-    // which section is "main"?
-    const mainSectionIndex = 2; // since your homepage is the 3rd .section
-
-    window.addEventListener("scroll", () => {
-      const sectionWidth = window.innerWidth;
-      const currentSection = Math.round(window.scrollX / sectionWidth);
-
-      if (currentSection === mainSectionIndex) {
-        leftArrow.classList.remove("hidden");
-        rightArrow.classList.remove("hidden");
-      } else {
-        leftArrow.classList.add("hidden");
-        rightArrow.classList.add("hidden");
-      }
+// Starts at center section
+window.addEventListener('load', () => {
+  // Wait for all layout to complete
+  requestAnimationFrame(() => {
+    const targetSection = 2; // Your homepage index
+    const scrollPosition = window.innerWidth * targetSection;
+    window.scrollTo({
+      left: scrollPosition,
+      behavior: 'instant'
     });
-
-
-  const wrapper = document.querySelector('.wrapper');
-  const sectionWidth = window.innerWidth; // each section is full screen width
-  const leftArrow = document.getElementById('arrow-left');
-  const rightArrow = document.getElementById('arrow-right');
-
-  rightArrow.addEventListener('click', () => {
-    window.scrollBy({ left: sectionWidth, behavior: 'smooth' });
   });
+});
 
-  leftArrow.addEventListener('click', () => {
-    window.scrollBy({ left: -sectionWidth, behavior: 'smooth' });
+const leftArrow = document.querySelector(".glass-bubble-left");
+const rightArrow = document.querySelector(".glass-bubble-right");
+
+// Which section is "main"?
+const mainSectionIndex = 2; // Your homepage is the 3rd section
+
+// Show/hide arrows based on current section
+window.addEventListener("scroll", () => {
+  const sectionWidth = window.innerWidth;
+  const currentSection = Math.round(window.scrollX / sectionWidth);
+
+  if (currentSection === mainSectionIndex) {
+    leftArrow.classList.remove("hidden");
+    rightArrow.classList.remove("hidden");
+  } else {
+    leftArrow.classList.add("hidden");
+    rightArrow.classList.add("hidden");
+  }
+});
+
+// LEFT ARROW CLICK - Navigate to previous section
+leftArrow.addEventListener("click", () => {
+  const sectionWidth = window.innerWidth;
+  const currentSection = Math.round(window.scrollX / sectionWidth);
+  const targetSection = currentSection - 1; // Go one section left
+  
+  window.scrollTo({
+    left: sectionWidth * targetSection,
+    behavior: 'smooth' // Smooth scroll animation
   });
+});
 
+// RIGHT ARROW CLICK - Navigate to next section
+rightArrow.addEventListener("click", () => {
+  const sectionWidth = window.innerWidth;
+  const currentSection = Math.round(window.scrollX / sectionWidth);
+  const targetSection = currentSection + 1; // Go one section right
+  
+  window.scrollTo({
+    left: sectionWidth * targetSection,
+    behavior: 'smooth' // Smooth scroll animation
+  });
+});
+
+const textObserverOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.3 // Trigger when 30% visible
+};
+
+const textObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.remove('hidden');
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+      entry.target.classList.add('hidden');
+    }
+  });
+}, textObserverOptions);
+
+// Observe the background text
+const backgroundText = document.querySelector('.background-text');
+const backgroundText2 = document.querySelector('.background-text2');
+
+if (backgroundText) {
+  textObserver.observe(backgroundText);
+}
+if (backgroundText2) {
+  textObserver.observe(backgroundText2);
+}
+
+// Also observe cards for their animation
+const cardObserverOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.2
+};
+
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.remove('hidden');
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+      entry.target.classList.add('hidden');
+    }
+  });
+}, cardObserverOptions);
+
+// Observe all cards
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+  cardObserver.observe(card);
+});
 
   </script>
 

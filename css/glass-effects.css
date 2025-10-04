@@ -53,6 +53,37 @@
   transition: all 0.3s ease; /* Smoothly animates all property changes over 0.3 seconds */
 }
 
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glass-bubble::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), rgb(58, 56, 56), rgb(255, 255, 255), black);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 50%;
+  animation: 5s spin linear infinite;
+
+  mask: radial-gradient(transparent 0%, transparent 70%, black 70%, black 100%);
+  -webkit-mask: radial-gradient(transparent 0%, transparent 70%, black 70%, black 100%);
+}
+@keyframes spin {
+  from{
+    --angle: 0deg;
+  }
+  to{
+    --angle: 360deg;
+  }
+}
+
 .glass-bubble:hover {
   background-color: rgba(255, 255, 255, 0.08); /* Slightly brighter on hover */
   transform: translateY(-50%) scale(1.1); /* Keeps vertical centering while growing 10% larger */
@@ -73,24 +104,40 @@
   right: 40px; /* Positions 40px from right edge of section */
 }
 
-.glass-bubble::before {
+ .glass-bubble::before {
   content: ''; /* Creates pseudo-element for arrow shape */
   width: 0;
   height: 0;
   border-style: solid; /* Uses CSS border trick to create triangle */
+  /* filter: blur(1.5rem);
+  opacity: 0.5; */
 }
 
 .glass-bubble-left::before {
-  border-width: 12px 18px 12px 0; /* Top Right Bottom Left - creates left-pointing triangle */
-  border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent; /* Only right border visible */
-  margin-right: 3px; /* Slight adjustment for visual centering */
+  content: '';
+  width: 16px;  /* Size of the arrow */
+  height: 16px; /* Same as width for a square */
+  
+  border-top: 3px solid rgba(255, 255, 255, 0.8);   /* Top edge */
+  border-left: 3px solid rgba(255, 255, 255, 0.8);  /* Left edge */
+  border-right: 0px;
+  border-bottom: 0px;
+  
+  transform: rotate(-45deg); 
+  margin-right: -3px;
 }
 
 .glass-bubble-right::before {
-  border-width: 12px 0 12px 18px; /* Creates right-pointing triangle */
-  border-color: transparent transparent transparent rgba(255, 255, 255, 0.8); /* Only left border visible */
-  margin-left: 3px; /* Slight adjustment for visual centering */
-}
+  content: '';
+  width: 16px;  /* Size of the arrow */
+  height: 16px;
+  border-top: 3px solid rgba(255, 255, 255, 0.8);  /* Top edge */
+  border-right: 3px solid rgba(255, 255, 255, 0.8); /* Right edge */
+  border-left: 0px;
+  border-bottom: 0px;
+  transform: rotate(45deg); /* Rotates to point right */
+  margin-left: -3px; /* Adjust position */
+} 
 
 
 .glass-bubble.hidden {
