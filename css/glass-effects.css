@@ -30,7 +30,7 @@
 .glass-bubble {
   height: 80px;
   width: 80px;
-  border-radius: 50%; /* Makes it circular instead of rectangular */
+  border-radius: 50%; /* makes it circular instead of rectangular */
   background-color: rgba(255, 255, 255, 0.121);
   backdrop-filter: blur(3px);
   border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -38,19 +38,19 @@
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.089);
   
   display: flex;
-  justify-content: center; /* Centers arrow horizontally */
-  align-items: center; /* Centers arrow vertically */
+  justify-content: center; /* centers arrow horizontally */
+  align-items: center; /* centers arrow vertically */
   
-  position: absolute; /* Changed from fixed - now positions relative to parent section */
-  top: 50%; /* Positions at vertical center of section */
-  transform: translateY(-50%); /* Adjusts for perfect vertical centering */
+  position: absolute; /* changed from fixed - now positions relative to parent section */
+  top: 50%; /* positions at vertical center of section */
+  transform: translateY(-50%); /* adjusts for perfect vertical centering */
   z-index: 100;
 
   transition: opacity 0.5s ease-in-out; /* smooth fade */
   opacity: 1; /* visible by default */
   
-  cursor: pointer; /* Shows hand cursor on hover to indicate clickability */
-  transition: all 0.3s ease; /* Smoothly animates all property changes over 0.3 seconds */
+  cursor: pointer; /* shows hand cursor on hover to indicate clickability */
+  transition: all 0.3s ease; /* smoothly animates all property changes over 0.3 seconds */
 }
 
 @property --angle{
@@ -85,41 +85,39 @@
 }
 
 .glass-bubble:hover {
-  background-color: rgba(255, 255, 255, 0.08); /* Slightly brighter on hover */
-  transform: translateY(-50%) scale(1.1); /* Keeps vertical centering while growing 10% larger */
+  background-color: rgba(255, 255, 255, 0.08); /* slightly brighter on hover */
+  transform: translateY(-50%) scale(1.1); /* keeps vertical centering while growing 10% larger */
 }
 
-/* CLICK EFFECT - Add this for visual feedback when clicked */
+
 .glass-bubble:active {
-  transform: translateY(-50%) scale(0.95); /* Shrinks to 95% when clicked - creates "press down" effect */
-  background-color: rgba(255, 255, 255, 0.12); /* Brightens more on click */
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.089); /* Reduces shadow to enhance "pressed" feeling */
+  transform: translateY(-50%) scale(0.95); /* shrinks to 95% when clicked - creates "press down" effect */
+  background-color: rgba(255, 255, 255, 0.12); /* brightens more on click */
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.089); /* reduces shadow to enhance "pressed" feeling */
 }
 
 .glass-bubble-left {
-  left: 40px; /* Positions 40px from left edge of section */
+  left: 40px; /* positions 40px from left edge of section */
 }
 
 .glass-bubble-right {
-  right: 40px; /* Positions 40px from right edge of section */
+  right: 40px; /* positions 40px from right edge of section */
 }
 
  .glass-bubble::before {
-  content: ''; /* Creates pseudo-element for arrow shape */
+  content: ''; /* creates pseudo-element for arrow shape */
   width: 0;
   height: 0;
-  border-style: solid; /* Uses CSS border trick to create triangle */
-  /* filter: blur(1.5rem);
-  opacity: 0.5; */
+  border-style: solid; 
 }
 
 .glass-bubble-left::before {
   content: '';
-  width: 16px;  /* Size of the arrow */
-  height: 16px; /* Same as width for a square */
+  width: 16px;  /* size of the arrow */
+  height: 16px; /* same as width for a square */
   
-  border-top: 3px solid rgba(255, 255, 255, 0.8);   /* Top edge */
-  border-left: 3px solid rgba(255, 255, 255, 0.8);  /* Left edge */
+  border-top: 3px solid rgba(255, 255, 255, 0.8);   /* top edge */
+  border-left: 3px solid rgba(255, 255, 255, 0.8);  /* left edge */
   border-right: 0px;
   border-bottom: 0px;
   
@@ -129,14 +127,14 @@
 
 .glass-bubble-right::before {
   content: '';
-  width: 16px;  /* Size of the arrow */
+  width: 16px;  /* size of the arrow */
   height: 16px;
-  border-top: 3px solid rgba(255, 255, 255, 0.8);  /* Top edge */
-  border-right: 3px solid rgba(255, 255, 255, 0.8); /* Right edge */
+  border-top: 3px solid rgba(255, 255, 255, 0.8);  /* top edge */
+  border-right: 3px solid rgba(255, 255, 255, 0.8); /* right edge */
   border-left: 0px;
   border-bottom: 0px;
-  transform: rotate(45deg); /* Rotates to point right */
-  margin-left: -3px; /* Adjust position */
+  transform: rotate(45deg); /* rotates to point right */
+  margin-left: -3px; /* adjust position */
 } 
 
 

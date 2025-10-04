@@ -14,10 +14,12 @@
 
     <!-- design 2 -->
   
-    <div class="section" style="background-color: #1a1a1a;">
-      <div class="content">
-        <h1>design2</h1>
-      </div>
+    <div class="section">
+      <video autoplay loop muted playsinline class ="background-clip">
+        <source src="images/bg/Render_1.mp4">
+      </video>
+      <div class="glass-bubble glass-bubble-left section-nav-left" data-section="0"></div>
+      <div class="glass-bubble glass-bubble-right section-nav-right" data-section="0"></div>
     </div>
 
 
@@ -28,6 +30,9 @@
       <video autoplay loop muted playsinline class ="background-clip">
         <source src="images/bg/left long.mp4">
       </video>
+
+      <div class="glass-bubble glass-bubble-left section-nav-left" data-section="1"></div>
+<div class="glass-bubble glass-bubble-right section-nav-right" data-section="1"></div>
 
       <div class="background-text2">DESIGN</div>
 
@@ -76,8 +81,8 @@
         <source src="images/bg/comp-1.mp4">
       </video>
      
-      <div class="glass-bubble glass-bubble-left" ></div>
-      <div class="glass-bubble glass-bubble-right"></div>
+     <div class="glass-bubble glass-bubble-left section-nav-left" data-section="2"></div>
+     <div class="glass-bubble glass-bubble-right section-nav-right" data-section="2"></div>
 
         <div class="title">
           <h1>Gokul<br>Nambiar</h1>
@@ -96,6 +101,9 @@
   </video>
 
   <div class="background-text">DEVELOPMENT</div>
+
+  <div class="glass-bubble glass-bubble-left section-nav-left" data-section="3"></div>
+<div class="glass-bubble glass-bubble-right section-nav-right" data-section="3"></div>
 
   <div class="card_wrapper">
     <div class="container">
@@ -119,7 +127,7 @@
         </div>
       </div>
       
-      <div class="card" style="background-image: url('images/dev\ ws.png')">
+      <div class="card" style="background-image: url('images/devws.png')">
         <div class="row">
           <div class="icon">3</div>
           <div class="description">
@@ -134,10 +142,13 @@
     
     <!-- dev 2 -->
 
-    <div class="section" style="background-color: #0a0a0a;">
-      <div class="content">
-        <h1>dev2</h1>
-      </div>
+    <div class="section">
+      <video autoplay loop muted playsinline class ="background-clip">
+        <source src="images/bg/Render_1.mp4">
+      </video>
+       <div class="glass-bubble glass-bubble-left section-nav-left" data-section="4"></div>
+  <div class="glass-bubble glass-bubble-right section-nav-right" data-section="4"></div>
+      
     </div>
 
 
@@ -153,79 +164,83 @@
 
 <!-- Scripts!!!! -->
 <script>
-
-  
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {  // small delay ensures layout is complete
-        window.scrollTo({
-          left: window.innerWidth * 2,
-          behavior: 'instant'
-        });
-      }, 100);  
-    });
-
-// Starts at center section
 window.addEventListener('load', () => {
-  // Wait for all layout to complete
-  requestAnimationFrame(() => {
-    const targetSection = 2; // Your homepage index
-    const scrollPosition = window.innerWidth * targetSection;
-    window.scrollTo({
-      left: scrollPosition,
-      behavior: 'instant'
-    });
-  });
+  leftArrows.forEach(arrow => arrow.classList.add("hidden"));
+  rightArrows.forEach(arrow => arrow.classList.add("hidden"));
+  
+  setTimeout(() => {
+    const targetSection = 2;
+    const exactScrollPosition = window.innerWidth * targetSection;
+    window.scrollTo(exactScrollPosition, 0);
+    
+    setTimeout(() => {
+      leftArrows[2].classList.remove("hidden");
+      rightArrows[2].classList.remove("hidden");
+    }, 50);
+  }, 150);  
 });
 
-const leftArrow = document.querySelector(".glass-bubble-left");
-const rightArrow = document.querySelector(".glass-bubble-right");
+const totalSections = 5;
 
-// Which section is "main"?
-const mainSectionIndex = 2; // Your homepage is the 3rd section
+const leftArrows = document.querySelectorAll(".section-nav-left");
+const rightArrows = document.querySelectorAll(".section-nav-right");
 
-// Show/hide arrows based on current section
 window.addEventListener("scroll", () => {
   const sectionWidth = window.innerWidth;
   const currentSection = Math.round(window.scrollX / sectionWidth);
 
-  if (currentSection === mainSectionIndex) {
-    leftArrow.classList.remove("hidden");
-    rightArrow.classList.remove("hidden");
-  } else {
-    leftArrow.classList.add("hidden");
-    rightArrow.classList.add("hidden");
-  }
-});
+  leftArrows.forEach(arrow => arrow.classList.add("hidden"));
+  rightArrows.forEach(arrow => arrow.classList.add("hidden"));
 
-// LEFT ARROW CLICK - Navigate to previous section
-leftArrow.addEventListener("click", () => {
-  const sectionWidth = window.innerWidth;
-  const currentSection = Math.round(window.scrollX / sectionWidth);
-  const targetSection = currentSection - 1; // Go one section left
-  
-  window.scrollTo({
-    left: sectionWidth * targetSection,
-    behavior: 'smooth' // Smooth scroll animation
+  leftArrows.forEach(arrow => {
+    const sectionIndex = parseInt(arrow.getAttribute("data-section"));
+    if (sectionIndex === currentSection && sectionIndex > 0) {
+      arrow.classList.remove("hidden");
+    }
+  });
+
+  rightArrows.forEach(arrow => {
+    const sectionIndex = parseInt(arrow.getAttribute("data-section"));
+    if (sectionIndex === currentSection && sectionIndex < totalSections - 1) {
+      arrow.classList.remove("hidden");
+    }
   });
 });
 
-// RIGHT ARROW CLICK - Navigate to next section
-rightArrow.addEventListener("click", () => {
-  const sectionWidth = window.innerWidth;
-  const currentSection = Math.round(window.scrollX / sectionWidth);
-  const targetSection = currentSection + 1; // Go one section right
-  
-  window.scrollTo({
-    left: sectionWidth * targetSection,
-    behavior: 'smooth' // Smooth scroll animation
+leftArrows.forEach(arrow => {
+  arrow.addEventListener("click", () => {
+    const sectionWidth = window.innerWidth;
+    const currentSection = Math.round(window.scrollX / sectionWidth);
+    const targetSection = currentSection - 1;
+    
+    if (targetSection >= 0) {
+      window.scrollTo({
+        left: sectionWidth * targetSection,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+rightArrows.forEach(arrow => {
+  arrow.addEventListener("click", () => {
+    const sectionWidth = window.innerWidth;
+    const currentSection = Math.round(window.scrollX / sectionWidth);
+    const targetSection = currentSection + 1;
+    
+    if (targetSection < totalSections) {
+      window.scrollTo({
+        left: sectionWidth * targetSection,
+        behavior: 'smooth'
+      });
+    }
   });
 });
 
 const textObserverOptions = {
   root: null,
   rootMargin: '0px',
-  threshold: 0.3 // Trigger when 30% visible
+  threshold: 0.3
 };
 
 const textObserver = new IntersectionObserver((entries) => {
@@ -240,7 +255,6 @@ const textObserver = new IntersectionObserver((entries) => {
   });
 }, textObserverOptions);
 
-// Observe the background text
 const backgroundText = document.querySelector('.background-text');
 const backgroundText2 = document.querySelector('.background-text2');
 
@@ -251,7 +265,6 @@ if (backgroundText2) {
   textObserver.observe(backgroundText2);
 }
 
-// Also observe cards for their animation
 const cardObserverOptions = {
   root: null,
   rootMargin: '0px',
@@ -270,13 +283,11 @@ const cardObserver = new IntersectionObserver((entries) => {
   });
 }, cardObserverOptions);
 
-// Observe all cards
 const cards = document.querySelectorAll('.card');
 cards.forEach(card => {
   cardObserver.observe(card);
 });
-
-  </script>
+</script>
 
 </body>
 </html>
